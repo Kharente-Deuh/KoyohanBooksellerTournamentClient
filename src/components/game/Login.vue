@@ -23,7 +23,10 @@
           :rules="[rules.required]"
           @click:append="showPassword = !showPassword"
         />
-        <recaptcha :token.sync="captchaToken" />
+        <recaptcha
+          :token.sync="captchaToken"
+          :resetCaptcha.sync="resetCaptcha"
+        />
       </v-form>
     </template>
     <template #actions v-if="!showResendActivationEmail">
@@ -93,6 +96,7 @@ export default class Login extends Vue {
   readonly authService = new AuthService();
 
   captchaToken = "";
+  resetCaptcha = false;
   showResendActivationEmail = false;
   loading = false;
   error = "";
@@ -139,11 +143,12 @@ export default class Login extends Vue {
         ...this.data,
         recaptcha: this.captchaToken as string,
       });
-      
+
       await this.fetchCurrentUser();
       this.ALERT_SUCCESS("Connexion réussie !");
       this.show = false;
     } catch (error: any) {
+      this.resetCaptcha = true;
       console.log(error);
       this.resetData();
       this.handleError(error.response?.status);
