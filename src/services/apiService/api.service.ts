@@ -37,20 +37,22 @@ export class ApiService extends HttpService {
 
         const refreshToken = this.localStorageService.getRefreshToken()
         if (refreshToken === null) {
-          return this.axiosInstance(config)
+          config._retry = false
+            return this.axiosInstance(config)
         }
 
         try {
-          const res = await this.axiosInstance.get<{ accessToken: string }>(`${apiBaseUrl}${Endpoint.AUTH}/token/refresh?token=${refreshToken}`)
-          const accessToken = res.data.accessToken
+          const res = await (new HttpService(apiBaseUrl)).get<{ accessToken: string }>(`${apiBaseUrl}${Endpoint.AUTH}/token/refresh?token=${refreshToken}`)
+          const accessToken = res.accessToken
           if (accessToken) {
             this.localStorageService.setAccessToken(accessToken)
           }
 
           return this.axiosInstance(config);
         } catch (err) {
-          console.error('LOOGOUT', err)
           logout()
+          config._retry = false
+          return this.axiosInstance(config)
         }
       })
   }
