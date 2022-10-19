@@ -9,7 +9,7 @@
         </span>
       </v-col>
       <v-col cols="6">
-        <img class="tomeCover" src="@/assets/tome.png" />
+        <img class="tomeCover" src="@/assets/tome.jpg" />
         <br />
         <v-btn>Lire un extrait</v-btn>
       </v-col>

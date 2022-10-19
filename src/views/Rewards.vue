@@ -22,12 +22,14 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row v-if="mode === UserType.LIBRARIAN" justify="center" class="totoRow">
+    <v-row justify="center" class="totoRow">
       <v-col cols="6" style="padding: 50px">
         <img
+          v-if="mode === UserType.LIBRARIAN"
           style="max-width: 100; max-height: 400px"
           src="@/assets/gloves.png"
         />
+        <img v-else class="tomeCover" src="@/assets/tome.jpg" />
       </v-col>
       <v-col cols="6" class="desicriptionCol">
         <p class="descriptionText mb-0">
@@ -40,8 +42,9 @@
         </p>
         <br />
         <p class="descriptionText">
-          Pour ce tournoi, les trois premiers libraires du classement pourront
-          gagner des lots:
+          Pour ce tournoi, les trois premiers
+          {{ mode === UserType.LIBRARIAN ? "libarires" : "lecteurs" }} du
+          classement pourront gagner des lots:
         </p>
         <p class="descriptionText">
           <span style="font-wieght: bold; color: #ffd700"> #1 </span>
@@ -53,25 +56,19 @@
           par l'auteur.
           <br />
           -
-          <span style="font-wieght: bold; color: #74bb85"> 10 </span>
-          exemplaires du tome 1
-          <span style="font-wieght: bold; color: #74bb85"> dédicacés </span>
+          <span style="font-wieght: bold; color: #74bb85"> 1 </span>
+          exemplaire du tome 1
+          <span style="font-wieght: bold; color: #74bb85"> dédicacé </span>
           par l'auteur
         </p>
 
         <p class="descriptionText">
           <span style="font-wieght: bold; color: #c0c0c0"> #2 </span>
           <br />
-          - Une paire de
-          <span style="font-wieght: bold; color: #74bb85">
-            Gants de boxe dédicacée
-          </span>
-          par l'auteur.
-          <br />
           -
-          <span style="font-wieght: bold; color: #74bb85"> 5 </span>
-          exemplaires du tome 1
-          <span style="font-wieght: bold; color: #74bb85"> dédicacés </span>
+          <span style="font-wieght: bold; color: #74bb85"> 1 </span>
+          exemplaire du tome 1
+          <span style="font-wieght: bold; color: #74bb85"> dédicacé </span>
           par l'auteur
         </p>
 
@@ -79,47 +76,12 @@
           <span style="font-wieght: bold; color: #cd7f32"> #3 </span>
           <br />
           -
-          <span style="font-wieght: bold; color: #74bb85"> 5 </span>
-          exemplaires du tome 1
-          <span style="font-wieght: bold; color: #74bb85"> dédicacés </span>
+          <span style="font-wieght: bold; color: #74bb85"> 1 </span>
+          exemplaire du tome 1
+          <span style="font-wieght: bold; color: #74bb85"> dédicacé </span>
           par l'auteur
         </p>
 
-        <p class="descriptionText">
-          Nous contacterons les gagnants par e-mail après la fin de l'événement
-          <span style="font-wieght: bold; color: #74bb85">
-            ({{ formatDate(eventEnd) }})
-          </span>
-          <br />
-          Alors surveillez le classement et votre boîte mail !
-        </p>
-      </v-col>
-    </v-row>
-    <v-row v-else justify="center" class="totoRow">
-      <v-col cols="6" style="padding: 50px">
-        <img class="tomeCover" src="@/assets/tome.png" />
-      </v-col>
-      <v-col cols="6" class="desicriptionCol">
-        <p class="descriptionText mb-0">
-          <span class="descriptionTitle"> Date de début: </span>
-          {{ startDate }}
-        </p>
-        <p class="descriptionText">
-          <span class="descriptionTitle"> Date de fin: </span>
-          {{ endDate }}
-        </p>
-        <br />
-        <p class="descriptionText">
-          Pour ce tournoi, chaque lecteur qui se placera dans les
-          <span style="font-wieght: bold; color: #ffd700">
-            10 premières places
-          </span>
-          du classement recevra
-          <span style="font-wieght: bold; color: #74bb85"> un exemplaire </span>
-          du tome 1
-          <span style="font-wieght: bold; color: #74bb85"> dédicacé </span>
-          par l'auteur !
-        </p>
         <p class="descriptionText">
           Nous contacterons les gagnants par e-mail après la fin de l'événement
           <span style="font-wieght: bold; color: #74bb85">
@@ -198,7 +160,6 @@ export default class Rewards extends Vue {
   border: solid 1px;
   border-color: #74bb85;
 }
-
 
 #selectionButtonsHeader {
   margin-top: 8px;
