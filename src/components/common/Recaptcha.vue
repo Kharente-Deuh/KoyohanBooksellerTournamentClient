@@ -1,5 +1,5 @@
 <template>
-  <div ref="captcha" class="vue-friendly-captcha frc-captcha" />
+  <div ref="captcha" class="vue-friendly-captcha frc-captcha captcha" />
 </template>
 
 <script lang="ts">
@@ -26,6 +26,7 @@ export default class Recaptcha extends Vue {
         sitekey: "FCMLAO0AGQ4P62EM",
         startMode: "focus",
         language: "fr",
+        errorCallback: this.onTokenExpired.bind(this),
         doneCallback: this.updateToken.bind(this),
         solutionFieldName: "frc-captcha-solution",
         puzzleEndpoint: "https://api.friendlycaptcha.com/api/v1/puzzle",
@@ -59,6 +60,6 @@ export default class Recaptcha extends Vue {
 </script>
 <style>
 .captcha {
-  width: 100% !important;
+  max-width: 100% !important;
 }
 </style>

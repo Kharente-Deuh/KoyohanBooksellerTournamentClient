@@ -6,8 +6,7 @@ export const colors = {
 
 export const apiBaseUrl = process.env.VUE_APP_API_BASE_URL
 
-export const librarianStart = "2022-10-13T09:08:20"
-// export const librarianStart = "2022-10-20T00:00:00"
+export const librarianStart = "2022-10-20T00:00:00"
 
 const addDaysToDate = (days: number, initialDate: Date): Date => {
   return new Date(initialDate.getTime() + days * 3600 * 24 * 1000)
