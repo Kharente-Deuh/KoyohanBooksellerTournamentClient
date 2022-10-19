@@ -153,7 +153,6 @@ export default class Rewards extends Vue {
     from: Route,
     next: (location?: Location) => void
   ): void {
-    console.log("enter");
     userFetcher(to, from, next);
   }
 

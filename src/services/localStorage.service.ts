@@ -17,7 +17,7 @@ export class LocalStorageService {
   }
 
   setRefreshToken(token: string): void {
-    console.log(`[LOCALSTORAGE] set refresh token: ${token}`)
+    this.setItem(LocalStorageData.REFRESH_TOKEN, token)
   }
 
   removeRefreshToken(): void {

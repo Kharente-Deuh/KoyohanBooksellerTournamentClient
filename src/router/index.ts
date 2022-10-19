@@ -69,14 +69,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to: Route, from: Route, next) => {
-  console.log(new Date(librarianStart))
-  console.log(customerStart)
-  console.log(eventEnd)
   const now = new Date()
   const defaultRoute: RawLocation = { name: now < eventEnd ? RouteName.GAME : RouteName.LEADERBORAD }
   const toName = to.name ? to.name as RouteName : null
-
-  console.log(`${to.path} - ${to.name}`)
 
   const initialStart = new Date(librarianStart)
 

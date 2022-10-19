@@ -97,7 +97,6 @@ export default class Leaderboard extends Vue {
     from: Route,
     next: (location?: Location) => void
   ): void {
-    console.log("enter");
     userFetcher(to, from, next);
   }
 
@@ -163,32 +162,16 @@ export default class Leaderboard extends Vue {
   ];
 
   get leaderboard(): LeaderboardUser[] {
-    let tmp = this.users.filter(({ type }) => type === this.mode);
-    for (let i = 0; i < 100; i++) {
-      tmp.push({
-        id: uuid(),
-        name: uuid(),
-        type: this.mode,
-        highScore: {
-          score: parseInt((Math.random() * 10000).toFixed()),
-          time: parseInt((Math.random() * 10000).toFixed()),
-        },
-      });
-    }
-    tmp = tmp.sort((a: User, b: User): number => {
-      const aWinB = isBetter(a.highScore, b.highScore);
-      const bWinA = isBetter(b.highScore, a.highScore);
-      return !aWinB && !bWinA ? 0 : aWinB ? -1 : 1;
-    });
-
-    return tmp.map(
-      (u: User, index: number): LeaderboardUser => ({
-        name: u.name,
-        score: u.highScore?.score.toString() || "0",
-        time: u.highScore ? timeToString(u.highScore.time) : "N/A",
-        rank: index + 1,
-      })
-    );
+    return this.users
+      .filter(({ type }) => type === this.mode)
+      .map(
+        (u: User, index: number): LeaderboardUser => ({
+          name: u.name,
+          score: u.highScore?.score.toString() || "0",
+          time: u.highScore ? timeToString(u.highScore.time) : "N/A",
+          rank: index + 1,
+        })
+      );
   }
 
   async fetchData(): Promise<void> {

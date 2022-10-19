@@ -11,9 +11,7 @@ export class Missile {
     public x: number,
     public y: number,
     public focus: number
-  ) {
-    console.log(`[Missile] { ${this.x}, ${this.y} }, ${this.focus}`)
-  }
+  ) {}
 
   show(p: P5): void {
     p.fill(0, 255, 255)

@@ -45,7 +45,6 @@ export class Fighter {
   }
 
   fire(): Missile[] {
-    console.log(`[Fighter] { ${this.x}, ${this.y} }`)
     return [
       new Missile(this.x + 0, this.y + 0, 1),
       new Missile(this.x + 55, this.y + 0, -1)

@@ -57,7 +57,6 @@ export default class Game extends Vue {
     from: Route,
     next: (location?: Location) => void
   ): void {
-    console.log("enter");
     userFetcher(to, from, next);
   }
 
@@ -80,7 +79,6 @@ export default class Game extends Vue {
 
   @Watch("showGameCanvas")
   onShowGameCanvasChange(val: boolean, oldVal: boolean): void {
-    console.log;
     if (oldVal === val) {
       return;
     }
@@ -97,7 +95,6 @@ export default class Game extends Vue {
   }
 
   onGameEnd(score: number, time: number): void {
-    console.log(`[GameEnd] score: ${score}, duration: ${time}`);
     this.newScore = { score, time };
     this.showGameCanvas = false;
   }

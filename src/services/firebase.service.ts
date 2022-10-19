@@ -22,7 +22,6 @@ export const verifyEmail = async (oobCode: string): Promise<void> => {
   try {
     await applyActionCode(getAuth(), oobCode)
   } catch (e) {
-    console.log(e)
     throw "Lien invalide"
   }
 }

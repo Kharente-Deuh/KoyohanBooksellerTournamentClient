@@ -36,7 +36,6 @@ export default class App extends Vue {
   readonly colors = colors;
 
   get isAuthRoute(): boolean {
-    console.log(this.$route.name);
     if (!this.$route.name) {
       return false;
     }

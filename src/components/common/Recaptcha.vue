@@ -20,8 +20,6 @@ export default class Recaptcha extends Vue {
       return
     }
 
-    console.log(this.$refs.captcha)
-    console.log(this.$refs)
     this.widget = new WidgetInstance(this.$refs.captcha as HTMLElement, {
         sitekey: "FCMLAO0AGQ4P62EM",
         startMode: "focus",

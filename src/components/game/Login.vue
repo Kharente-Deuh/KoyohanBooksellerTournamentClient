@@ -149,7 +149,6 @@ export default class Login extends Vue {
       this.show = false;
     } catch (error: any) {
       this.resetCaptcha = true;
-      console.log(error);
       this.resetData();
       this.handleError(error.response?.status);
     }

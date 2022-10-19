@@ -63,7 +63,6 @@ export default class TheBoxer extends Vue {
     from: Route,
     next: (location?: Location) => void
   ): void {
-    console.log("enter");
     userFetcher(to, from, next);
   }
 }

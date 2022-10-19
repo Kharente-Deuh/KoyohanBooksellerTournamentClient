@@ -149,7 +149,6 @@ export default class Register extends Vue {
     this.data.password = "";
     this.data.passwordConfirmation = "";
     this.form().resetValidation();
-    console.log(this.$refs.recaptcha)
     this.loading = false;
   }
 
@@ -170,7 +169,6 @@ export default class Register extends Vue {
       );
       this.show = false;
     } catch (error: any) {
-      console.log(error);
       this.resetData();
       this.handleError(error.response?.status);
     }
