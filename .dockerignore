@@ -1,0 +1,8 @@
+tests
+node_modules
+package-lock.json
+.env.tmp
+cypress
+dist
+.DS_Store
+.vscode

@@ -4,17 +4,14 @@
       <v-col cols="12">
         <span class="announceTitle"> The Boxer - Tome 1 </span>
         <br />
-        <span class="announceText" v-if="availabilityDate === null">
-          Déjà disponible chez votre libraire !
-        </span>
-        <span class="announceText" v-else>
-          Déjà le {{ availabilityDate }} chez votre libraire !
+        <span class="announceText">
+          {{ tomePresentationText }}
         </span>
       </v-col>
       <v-col cols="6">
         <img class="tomeCover" src="@/assets/tome.jpg" />
         <br />
-        <v-btn>Lire un extrait</v-btn>
+        <v-btn href="/extrait.pdf" download>Lire un extrait</v-btn>
       </v-col>
       <v-col cols="6" class="desicriptionCol">
         <p class="descriptionText">
@@ -68,6 +65,14 @@ export default class TheBoxer extends Vue {
     next: (location?: Location) => void
   ): void {
     userFetcher(to, from, next);
+  }
+
+  get tomePresentationText(): string {
+    if (this.availabilityDate === null) {
+      return "Déjà disponible chez votre libraire !";
+    }
+
+    return `Disponible le ${this.availabilityDate} !`;
   }
 
   get availabilityDate(): string | null {
