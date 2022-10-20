@@ -16,6 +16,7 @@
     "friendly-challenge": "^0.9.8",
     "p5": "^1.4.2",
     "serve-static": "^1.15.0",
+    "uuid": "^9.0.0",
     "validator": "^13.7.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
