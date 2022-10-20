@@ -63,14 +63,13 @@
   </v-container>
 </template>
 <script lang="ts">
-import { v4 as uuid } from "uuid";
 import { Component, Vue } from "vue-property-decorator";
 import { Route } from "vue-router";
 import { namespace } from "vuex-class";
 
 import { User, UserType } from "@/services/apiService/types";
 import { colors, customerStart } from "@/utils/constants";
-import { isBetter, timeToString } from "@/utils/score.utils";
+import { timeToString } from "@/utils/score.utils";
 import userFetcher from "@/utils/userFetcher";
 
 import ResizableTable from "@/components/common/resizableTable.vue";

@@ -4,8 +4,11 @@
       <v-col cols="12">
         <span class="announceTitle"> The Boxer - Tome 1 </span>
         <br />
-        <span class="announceText">
+        <span class="announceText" v-if="availabilityDate === null">
           Déjà disponible chez votre libraire !
+        </span>
+        <span class="announceText" v-else>
+          Déjà le {{ availabilityDate }} chez votre libraire !
         </span>
       </v-col>
       <v-col cols="6">
@@ -51,6 +54,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { customerStart } from "@/utils/constants";
 import { Route } from "vue-router";
 
 import userFetcher from "@/utils/userFetcher";
@@ -64,6 +68,24 @@ export default class TheBoxer extends Vue {
     next: (location?: Location) => void
   ): void {
     userFetcher(to, from, next);
+  }
+
+  get availabilityDate(): string | null {
+    if (new Date() > customerStart) {
+      return null;
+    }
+
+    return this.formatDate(customerStart);
+  }
+
+  formatDate(date: Date): string {
+    return (
+      date.getDate() +
+      " / " +
+      (date.getMonth() + 1) +
+      " / " +
+      date.getFullYear()
+    );
   }
 }
 </script>
