@@ -69,7 +69,7 @@ import { namespace } from "vuex-class";
 
 import { User, UserType } from "@/services/apiService/types";
 import { colors, customerStart } from "@/utils/constants";
-import { timeToString } from "@/utils/score.utils";
+import { isBetter, timeToString } from "@/utils/score.utils";
 import userFetcher from "@/utils/userFetcher";
 
 import ResizableTable from "@/components/common/resizableTable.vue";
@@ -161,16 +161,22 @@ export default class Leaderboard extends Vue {
   ];
 
   get leaderboard(): LeaderboardUser[] {
-    return this.users
+    const gamers = [...this.users]
       .filter(({ type }) => type === this.mode)
-      .map(
-        (u: User, index: number): LeaderboardUser => ({
-          name: u.name,
-          score: u.highScore?.score.toString() || "0",
-          time: u.highScore ? timeToString(u.highScore.time) : "N/A",
-          rank: index + 1,
-        })
-      );
+      .sort((a: User, b: User): number => {
+        const aWinB = isBetter(a.highScore, b.highScore);
+        const bWinA = isBetter(b.highScore, a.highScore);
+        return !aWinB && !bWinA ? 0 : aWinB ? -1 : 1;
+      });
+
+    return gamers.map(
+      (u: User, index: number): LeaderboardUser => ({
+        name: u.name,
+        score: u.highScore?.score.toString() || "0",
+        time: u.highScore ? timeToString(u.highScore.time) : "N/A",
+        rank: index + 1,
+      })
+    );
   }
 
   async fetchData(): Promise<void> {

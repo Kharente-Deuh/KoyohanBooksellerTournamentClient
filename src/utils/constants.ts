@@ -12,6 +12,6 @@ const addDaysToDate = (days: number, initialDate: Date): Date => {
   return new Date(initialDate.getTime() + days * 3600 * 24 * 1000)
 }
 
-export const customerStart = addDaysToDate(2 * 7, new Date(librarianStart))
+export const customerStart = addDaysToDate(15, new Date(librarianStart))
 
-export const eventEnd = addDaysToDate(4 * 7, new Date(librarianStart))
+export const eventEnd = addDaysToDate(15 + 14, new Date(librarianStart))
