@@ -11,6 +11,9 @@
         />
       </div>
       <router-view v-show="!loading" />
+      <div class="footer">
+       The Boxer - © 2021 by Jihun Jung / DAEWON C.I. Inc. · ULTRAMEDIA
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -65,5 +68,17 @@ export default class App extends Vue {
   height: calc(100% - 64px) !important;
   display: grid;
   place-content: center;
+}
+</style>
+<style scoped>
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  text-align: center;
 }
 </style>

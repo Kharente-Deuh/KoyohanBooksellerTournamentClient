@@ -10,8 +10,6 @@
       </v-col>
       <v-col cols="6">
         <img class="tomeCover" src="@/assets/tome.jpg" />
-        <br />
-        <v-btn href="/extrait.pdf" download>Lire un extrait</v-btn>
       </v-col>
       <v-col cols="6" class="desicriptionCol">
         <p class="descriptionText">
